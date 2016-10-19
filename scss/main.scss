@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Gotham";
+    src: url("fonts/Gotham/Gotham.eot"); /* IE9*/
+    src: url("fonts/Gotham/Gotham.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+         url("fonts/Gotham/Gotham.woff2") format("woff2"), /* chrome、firefox */
+         url("fonts/Gotham/Gotham.woff") format("woff"), /* chrome、firefox */
+         url("fonts/Gotham/Gotham.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+         url("fonts/Gotham/Gotham.svg#Gotham-Book") format("svg"); /* iOS 4.1- */
+}
+
+@import '../components/homepage/homepage';

@@ -1,0 +1,35 @@
+{
+  "version": "0.0.1",
+  "description": "Frontend",
+  "author": "chariss",
+  "keywords": [],
+  "bugs": "",
+  "repository": "",
+  "private": true,
+  "files": "src",
+  "engines": {
+    "node": "== 6.0.0"
+  },
+  "devDependencies": [
+    "bower@~1.7",
+    "html-minifier@~1.2",
+    "ng-html2js@2.0",
+    "uglify-js@~2.6",
+    "gulp",
+    "gulp-ruby-sass",
+    "gulp-uglify",
+    "gulp-replace",
+    "gulp-notify",
+    "gulp-concat",
+    "gulp-util",
+    "gulp-callback",
+    "gulp-debug",
+    "gulp-sourcemaps",
+    "gulp-duration",
+    "gulp-rename",
+    "gulp-imagemin",
+    "gulp-cache"
+  ],
+  "scripts": {
+  }
+}

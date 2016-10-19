@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Front-End Test</title>
+        <link rel="shortcut icon" type="image/png" href="img/favicon/16x16.png"/>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="main.min.css">
+    </head>
+
+    <body ng-app="frontEnd.app" ng-controller="FrontEndController">
+        <header>
+            <div class="container">
+                <div class="col-xs-12 col-sm-8">
+                    <img src="images/legal-match-logo.png" class="logo"/>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <ul>
+                        <li>
+                            <i class="fa fa-check" aria-hidden="true"></i> No fee to present your case
+                        </li>
+                        <li>
+                            <i class="fa fa-check" aria-hidden="true"></i> Choose from lawyers in your area
+                        </li>
+                        <li>
+                            <i class="fa fa-check" aria-hidden="true"></i> A 100% confidential service
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class="body">
+            <fe-homepage ng-if="view == 'homepage'"></fe-homepage>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="col-xs-12 col-sm-2">
+                    <img src="images/legal-match-footer-logo.png" class="logo"/>
+                </div>
+                <div class="col-xs-12 col-sm-8 text-center">
+                    <ul>
+                        <li><a href="#">User Agreement</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                    <p>
+                        Copyright 1999-2016 LegalMatch. All rights reserved. LegalMatch<span>&copy;</span>, <br>
+                        the LegalMatch logo, and the tradedress are trademarks of LegalMatcch. Patents Pending.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <img src="images/etrust-verified.png" class="certified"/>
+                    <img src="images/accredited-business.png" class="certified"/>
+                </div>
+            </div>
+        </footer>
+
+    <script src="main.min.js"></script>
+    </body>
+</html>
