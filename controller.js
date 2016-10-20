@@ -3,11 +3,21 @@
         [
             'ngRoute',
             'ui.bootstrap',
-            'frontend.homepage'
+            'frontend.homepage',
+            'frontend.findLawyer',
+            'frontend.clientReview',
+            'frontend.categoryList'
         ])
 
         .controller('FrontEndController', function ($scope) {
-            $scope.view = 'homepage';
+
+            $scope.showPopup = function(name) {
+                $scope.popupView = name;
+            };
+
+            $scope.hidePopup = function() {
+                $scope.popupView = '';
+            };
 
         });
 }());

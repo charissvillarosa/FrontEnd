@@ -6,7 +6,9 @@
             templateUrl: 'components/homepage/homepage.html',
             controller: HomepageController,
             bindings: {
-
+                showCategories: '&',
+                showReview: '&',
+                showFindLawyer: '&'
             }
         });
 

@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="main.min.css">
     </head>
 
-    <body ng-app="frontEnd.app" ng-controller="FrontEndController">
+    <body ng-app="frontEnd.app" ng-controller="FrontEndController" ng-class="popupView ? 'scroll-hidden' : ''">
         <header>
             <div class="container">
                 <div class="col-xs-12 col-sm-8">
@@ -33,7 +33,12 @@
         </header>
 
         <div class="body">
-            <fe-homepage ng-if="view == 'homepage'"></fe-homepage>
+            <div class="glow"></div>
+            <fe-homepage
+                    show-categories="showPopup('categories')"
+                    show-review="showPopup('client-review')"
+                    show-find-lawyer="showPopup('find-lawyer')">
+            </fe-homepage>
         </div>
 
         <footer>
@@ -59,6 +64,20 @@
             </div>
         </footer>
 
-    <script src="main.min.js"></script>
+        <fe-find-lawyer
+            ng-show="popupView == 'find-lawyer'"
+            on-close="hidePopup()"
+        >
+        </fe-find-lawyer>
+        <fe-client-review
+            ng-show="popupView == 'client-review'"
+            on-close="hidePopup()">
+        </fe-client-review>
+        <fe-category-list
+                ng-show="popupView == 'categories'"
+                on-close="hidePopup()">
+        </fe-category-list>
+
+        <script src="main.min.js"></script>
     </body>
 </html>
