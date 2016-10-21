@@ -239,6 +239,21 @@ body {
             .form-control {
                 padding-left: 50px;
             }
+
+            .dropdown-menu {
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0;
+
+                width: 60%;
+                margin: 0% 3%;
+
+                li {
+                    a {
+                        background: #fff;
+                    }
+                }
+            }
         }
 
         .dropdown.open {
@@ -289,7 +304,7 @@ body {
                         text-align: center;
 
                         img {
-                            border: solid 1px #2976ad;
+                            //border: solid 1px #2976ad;
                             width: 70px;
                             margin: 0 20px;
                         }
@@ -320,8 +335,9 @@ body {
                             }
                         }
 
-                        div {
+                        div.quote {
                             font-size: 13px;
+                            font-style: italic;
                         }
 
                         a {

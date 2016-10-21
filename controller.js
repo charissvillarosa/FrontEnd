@@ -3,6 +3,7 @@
         [
             'ngRoute',
             'ui.bootstrap',
+            'ui.bootstrap.typeahead',
             'frontend.homepage',
             'frontend.findLawyer',
             'frontend.clientReview',
@@ -17,6 +18,11 @@
 
             $scope.hidePopup = function() {
                 $scope.popupView = '';
+            };
+            
+            $scope.showReview = function(clientReview) {
+                $scope.selectedClientReview = clientReview;
+                $scope.showPopup('client-review');
             };
 
         });

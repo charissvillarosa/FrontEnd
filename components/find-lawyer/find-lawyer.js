@@ -10,12 +10,19 @@
             }
         });
 
-    function FindLawyerController ($scope) {
+    function FindLawyerController ($scope, $timeout) {
         var self = this;
 
+        $scope.findLawyer = function()
+        {
+            $scope.isProcessing = true;
 
-
+            $timeout(function() {
+                $scope.isProcessing = false;
+            }, 2000);
+        }
     }
+
 }());
 
 

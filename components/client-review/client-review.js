@@ -6,16 +6,15 @@
             templateUrl: 'components/client-review/client-review.html',
             controller: ClientReviewController,
             bindings: {
-                onClose: '&'
+                onClose: '&',
+                clientReview: '='
             }
         });
 
     function ClientReviewController ($scope) {
         var self = this;
-
-
-
     }
+    
 }());
 
 

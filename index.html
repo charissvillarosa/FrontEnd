@@ -36,7 +36,7 @@
             <div class="glow"></div>
             <fe-homepage
                     show-categories="showPopup('categories')"
-                    show-review="showPopup('client-review')"
+                    show-review="showReview(clientReview)"
                     show-find-lawyer="showPopup('find-lawyer')">
             </fe-homepage>
         </div>
@@ -71,7 +71,8 @@
         </fe-find-lawyer>
         <fe-client-review
             ng-show="popupView == 'client-review'"
-            on-close="hidePopup()">
+            on-close="hidePopup()"
+            client-review="selectedClientReview">
         </fe-client-review>
         <fe-category-list
                 ng-show="popupView == 'categories'"

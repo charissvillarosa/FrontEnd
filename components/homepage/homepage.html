@@ -7,19 +7,22 @@
         <label>Enter Zip Code or City:</label>
         <div class="group">
             <span class="number">1</span>
-            <input type="text" class="form-control" id="zipcode" placeholder="Does not have to be where you live">
+            <input type="text" class="form-control"
+                   id="zipcode" ng-model="zipcode"
+                   placeholder="Does not have to be where you live"
+                   uib-typeahead="zip for zip in zipCodeList | filter:$viewValue | limitTo:8">
         </div>
         <label>Choose a category:</label>
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="number">2</span> Click to choose a legal category
+                <span class="number">2</span>
+                {{ category ? category : 'Click to choose a legal category'}}
                 <span class="fa fa-angle-down"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#" <a ng-click="$ctrl.showFindLawyer()">category</a></li>
-                <li><a href="#" <a ng-click="$ctrl.showFindLawyer()">category</a></li>
-                <li><a href="#" <a ng-click="$ctrl.showFindLawyer()">category</a></li>
-                <li><a href="#" <a ng-click="$ctrl.showFindLawyer()">category</a></li>
+                <li ng-repeat="category in categoryList">
+                    <a href="#" <a ng-click="onSelectCategory(category)">{{category}}</a>
+                </li>
             </ul>
         </div>
         <p class="find-category">Can't find your category? <a ng-click="$ctrl.showCategories()">Click here.</a></p>
@@ -27,16 +30,16 @@
     <div class="col-xs-12 col-sm-6">
         <h3>Client review LegalMatch lawyers</h3>
         <ul class="lawyers">
-            <li>
+            <li ng-repeat="review in clientReviews">
                 <div class="media">
                     <div class="media-left">
-                        <img class="media-object img-circle" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdkZmE5NTVjMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2RmYTk1NWMxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy40Njg3NSIgeT0iMzYuNSI+NjR4NjQ8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="">
-                        <p class="name">Mitchell M.</p>
-                        <p class="address">Cherry Hill, NJ</p>
+                        <img class="media-object img-circle" ng-src="{{review.imageUrl}}" alt="">
+                        <p class="name">{{ review.name }}</p>
+                        <p class="address">{{ review.address }}</p>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            Family Law
+                            {{ review.category }}
                             <span>
                                 <i class="fa fa-star" aria-hidden="true"></i>
                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -45,88 +48,10 @@
                                 <i class="fa fa-star" aria-hidden="true"></i>
                             </span>
                         </h4>
-                        <div>
-                            "Lorem ipsum dolor sit amet, id sapien vestibulum, semper mauris dui, fringilla praesent vulputate ultricies eget posuere, dui ac, ad quisque velit."
+                        <div class="quote">
+                            &ldquo;{{ review.message }}
                         </div>
-                        <a href="#" class="pull-right" ng-click="$ctrl.showReview()">Read Review <img class="media-object" src="images/book.png"/></a>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object img-circle" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdkZmE5NTVjMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2RmYTk1NWMxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy40Njg3NSIgeT0iMzYuNSI+NjR4NjQ8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="">
-                        <p class="name">Mitchell M.</p>
-                        <p class="address">Cherry Hill, NJ</p>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            Family Law
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                        </h4>
-                        <div>
-                            "Lorem ipsum dolor sit amet, id sapien vestibulum, semper mauris dui, fringilla praesent vulputate ultricies eget posuere, dui ac, ad quisque velit."
-                        </div>
-                        <a href="#" class="pull-right" ng-click="$ctrl.showReview()">Read Review <img class="media-object" src="images/book.png"/></a>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object img-circle" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdkZmE5NTVjMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2RmYTk1NWMxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy40Njg3NSIgeT0iMzYuNSI+NjR4NjQ8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="">
-                        <p class="name">Mitchell M.</p>
-                        <p class="address">Cherry Hill, NJ</p>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            Family Law
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                        </h4>
-                        <div>
-                            "Lorem ipsum dolor sit amet, id sapien vestibulum, semper mauris dui, fringilla praesent vulputate ultricies eget posuere, dui ac, ad quisque velit."
-                        </div>
-                        <a href="#" class="pull-right" ng-click="$ctrl.showReview()">Read Review <img class="media-object" src="images/book.png"/></a>
-                    </div>
-                </div>
-            </li>
-
-            <li>
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object img-circle" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdkZmE5NTVjMSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2RmYTk1NWMxIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxMy40Njg3NSIgeT0iMzYuNSI+NjR4NjQ8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" alt="">
-                        <p class="name">Mitchell M.</p>
-                        <p class="address">Cherry Hill, NJ</p>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            Family Law
-                            <span>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                            </span>
-                        </h4>
-                        <div>
-                            "Lorem ipsum dolor sit amet, id sapien vestibulum, semper mauris dui, fringilla praesent vulputate ultricies eget posuere, dui ac, ad quisque velit."
-                        </div>
-                        <a href="#" class="pull-right" ng-click="$ctrl.showReview()">Read Review <img class="media-object" src="images/book.png"/></a>
+                        <a href="#" class="pull-right" ng-click="$ctrl.showReview({clientReview: review})">Read Review <img class="media-object" src="images/book.png"/></a>
                     </div>
                 </div>
             </li>

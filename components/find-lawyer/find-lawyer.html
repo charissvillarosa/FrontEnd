@@ -65,7 +65,9 @@
                 </li>
             </ul>
             <div class="text-center">
-                <button class="btn btn-primary">Find A Lawyer Now</button>
+                <button class="btn btn-primary" ng-click="findLawyer()" ng-disabled="isProcessing">
+                    {{isProcessing ? 'Processing...' : 'Find A Lawyer Now'}}
+                </button>
             </div>
         </div>
     </div>
